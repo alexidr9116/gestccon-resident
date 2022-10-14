@@ -17,7 +17,7 @@ import AppPages from "./app/pages";
 import { AlertDialog, AlertDialogProvider } from "./contexts/alert.context";
 import { useEffect, useLayoutEffect } from "react";
 import { store } from "./store/store";
-import './app.css'
+import './index.css'
 import { AuthProvider } from "./contexts/auth.context";
 
 function App() {
