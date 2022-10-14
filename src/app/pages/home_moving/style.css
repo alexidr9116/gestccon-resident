@@ -1,0 +1,19 @@
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.fade-out {
+  opacity: 0 ;
+  transition: opacity 0.2s ease;
+  z-index: -999;
+}
+
+@media screen and (max-width < 426px ) {
+  body {
+    background: red;
+  }
+  input[date] {
+    margin-top: 5px
+  }
+}

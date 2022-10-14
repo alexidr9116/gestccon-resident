@@ -1,0 +1,11 @@
+#classificatePhoto {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.object-cover {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}
