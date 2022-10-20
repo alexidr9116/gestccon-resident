@@ -25,11 +25,18 @@ const AuthProvider = (props) => {
             email,
             password,
         });
-        const { token, user } = response.data.data;
+        if (response.status === 201 && response.data.message) {
+            return { success: false, message: response.data.message }
+        }
+        else {
+            const { token, user } = response.data.data;
 
-        setSession(token);
-        setIsAuthenticated(true)
-        setUser(user)
+            setSession(token);
+            setIsAuthenticated(true)
+            setUser(user)
+            return { success: true }
+        }
+
 
     }
     const logout = () => {

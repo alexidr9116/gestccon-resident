@@ -10,13 +10,14 @@ import Classificates from "./classificates";
 import AdminChat from "./components/AdminChat";
 import Informatives from "./informatives";
 import Reservations from "./reservations";
-import {store} from '../../../store/store';
+import { store } from '../../../store/store';
 import useAuth from "../../../hooks/useAuth";
 import { HOST_API } from "../../util/axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Home() {
   const [modalOpen, setModalOpen] = useState(false);
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     /* setTimeout(() => {
@@ -40,13 +41,8 @@ function Home() {
     <AnimatedPage>
       <div>
         <div className="w-100" style={{ height: 250, overflow: "hidden" }}>
-          <img
-            loading="lazy"
-            className="w-100"
-            // src="/assets/img/verano-local.png"
-            src = {`${HOST_API}${user?.condo?.image}`}
-            style={{ objectFit: "cover" }}
-          />
+          <LazyLoadImage className="w-100" src={`${HOST_API}${user?.condo?.image}`} effect={'blur'} placeholderSrc={'/assets/img/verano-local.png'} />
+
         </div>
         <Reservations />
         <Informatives />

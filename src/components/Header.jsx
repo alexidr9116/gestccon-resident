@@ -8,6 +8,8 @@ import {
 } from "react-ionicons";
 import { Link, useNavigate } from "react-router-dom";
 import AdminChat from "../app/pages/home/components/AdminChat";
+import { HOST_API } from "../app/util/axios";
+import useAuth from "../hooks/useAuth";
 
  
 export default function Header({
@@ -17,7 +19,7 @@ export default function Header({
 }) {
   const [leftPanel, setLeftPanel] = useState() ;
   const [admMessageActionSheet, setAdmMessageActionSheet] = useState();
-
+  const {user} = useAuth();
   useEffect(() => {
     setLeftPanel(
       new window.bootstrap.Modal(document.getElementById("panelLeft"))
@@ -81,9 +83,10 @@ export default function Header({
                 </Link>
                 <Link to="/app/user" className="headerButton">
                   <img
-                    src="/assets/img/avatar.png"
+                     src={user?.avatar && `${HOST_API}${user.avatar}`||"/assets/img/avatar.png"}
+                  
                     alt="image"
-                    className="imaged w32"
+                    className="imaged w32 rounded-circle"
                   />
                   <span className="badge badge-danger">6</span>
                 </Link>
@@ -102,6 +105,7 @@ export default function Header({
 
 function SidePanel({ controller, adminChatController }) {
   const navigate = useNavigate();
+  const {user} = useAuth();
   function hideLeftPanel() {
     controller?.hide();
   }
@@ -124,14 +128,15 @@ function SidePanel({ controller, adminChatController }) {
             <div className="profileBox pt-2 pb-2">
               <div className="image-wrapper">
                 <img
-                  src="/assets/img/avatar.png"
+                  src={user?.avatar && `${HOST_API}${user.avatar}`||"/assets/img/avatar.png"}
+                  
                   alt="image"
-                  className="imaged  w36"
+                  className="imaged rounded-circle w36"
                 />
               </div>
               <div className="in">
-                <strong>Marco Aurélio</strong>
-                <div className="text-muted">4029209</div>
+                <strong>{user?.name}</strong>
+                <div className="text-muted">{user?.cell}</div>
               </div>
               <a
                 href="#"

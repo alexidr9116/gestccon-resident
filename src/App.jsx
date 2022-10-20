@@ -17,6 +17,12 @@ import AppPages from "./app/pages";
 import { AlertDialog, AlertDialogProvider } from "./contexts/alert.context";
 import { useEffect, useLayoutEffect } from "react";
 import { store } from "./store/store";
+// lazy image
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
+import 'react-lazy-load-image-component/src/effects/black-and-white.css';
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import './index.css'
 import { AuthProvider } from "./contexts/auth.context";
 

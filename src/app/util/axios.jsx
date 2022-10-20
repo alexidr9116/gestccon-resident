@@ -1,7 +1,7 @@
 import axios from 'axios';
 // config
-// export const HOST_API = 'http://localhost:5700/'
-export const HOST_API = 'https://gestccon-api.herokuapp.com/'
+export const HOST_API = 'http://localhost:5700/'
+// export const HOST_API = 'https://gestccon-api.herokuapp.com/'
 // ----------------------------------------------------------------------
 
 const axiosInstance = axios.create({

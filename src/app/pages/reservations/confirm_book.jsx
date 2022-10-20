@@ -11,11 +11,11 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../../components/Header";
 import { useAlertDialogContext } from "../../../contexts/alert.context";
+import { store } from "../../../store/store";
 import { addReservation } from "../../services/reservations.service";
 
 export default function ConfirmBook() {
-  const { state } = useLocation() ;
-  console.log({ state });
+  const state = store.useState((e)=>e.environment)
   const navigate = useNavigate();
   const { openDialog } = useAlertDialogContext();
   function handleAddReservation() {
@@ -43,7 +43,6 @@ export default function ConfirmBook() {
 
     navigate("/app/reservations", { replace: true });
   }
-
   return (
     <div>
       <Header showGoBack title="Confirmar reserva" rightSide={<></>} />
@@ -56,7 +55,7 @@ export default function ConfirmBook() {
                   <LocationOutline cssClasses="md hydrated text-white" />
                 </div>
                 <div className="in">
-                  <span className="fw-bold">{state.locationName}</span>
+                  <span className="fw-bold">{state.name}</span>
                 </div>
               </div>
             </li>
@@ -70,7 +69,7 @@ export default function ConfirmBook() {
                 </div>
                 <div className="in">
                   <span className="fw-bold">
-                    {format(parse(state.book_date, 'yyyy-MM-dd', Date.now()), 'dd/MM/yyyy')}
+                    {format(parse(state.bookedDate, 'yyyy-MM-dd', Date.now()), 'dd/MM/yyyy')}
                   </span>
                 </div>
               </div>
@@ -87,8 +86,8 @@ export default function ConfirmBook() {
                     </div>
                     <div className="in">
                       <span className="fw-bold">
-                        {format(new Date(state.initial_book_period), "HH:mm")}{" "}
-                        às {format(new Date(state.final_book_period), "HH:mm")}
+                        {format(new Date(state.bookedDate), "HH:mm")}{" "}
+                        às {format(new Date(state.periodDate), "HH:mm")}
                       </span>
                     </div>
                   </div>
@@ -104,7 +103,7 @@ export default function ConfirmBook() {
                   />
                 </div>
                 <div className="in">
-                  <span className="fw-bold">R$ {state.tax}</span>
+                  <span className="fw-bold">R$ {state.cost}</span>
                 </div>
               </div>
             </li>

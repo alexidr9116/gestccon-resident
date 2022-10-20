@@ -19,7 +19,7 @@ export const store = new Store({
     email: 'email@email.com',
     phone: '(81) 9 9458-2566'
 
-  }, 
+  },
   visitors: [],
   ambients: [],
   classificates: classificatesMock(),
@@ -28,6 +28,14 @@ export const store = new Store({
   occurences: [],
   assemblies: assemblyMock(),
   informatives: informativesMock,
+  environment: {
+    id:0,
+    name:'',
+    bookedDate:'',
+    cost:0,
+    periodDate:'',
+  }
+
 });
 
 /* store.subscribe(

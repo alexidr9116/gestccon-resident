@@ -53,8 +53,8 @@ export default function VisitorFormPage() {
   let { id } = useParams();
 
   //States
-  const [visitorImage, setVisitorImage] = useState<any>(defaultImg);
-  const [authorizationMode, setAuthorizationMode] = useState<"day" | "period">(
+  const [visitorImage, setVisitorImage] = useState(defaultImg);
+  const [authorizationMode, setAuthorizationMode] = useState(
     "day"
   );
 

@@ -201,7 +201,18 @@ export default function ReservationsBook() {
         "yyyy-MM-dd'T'HH:mm"
       );
     }
-
+    console.log(state);
+    store.update(e=>{
+      e.environment = {
+        bookedDate:date,
+        cost:ambient.cost,
+        id:ambient.id,
+        name:ambient.name,
+        periodDate:state.final_book_period,
+        
+      }
+      
+    })
     navigate("confirm", { state });
   };
 

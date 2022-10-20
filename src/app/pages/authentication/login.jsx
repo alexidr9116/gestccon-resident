@@ -16,45 +16,48 @@ const schema = yup.object({
 export default function Login() {
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) });
   const [loginError, setLoginError] = useState(false)
-  const {login} = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate()
-  
-  const onSubmit = async(data) => {
-    await login(data.email, data.senha);
 
+  const onSubmit = async (data) => {
+    const response = await login(data.email, data.senha);
+    if (response.success)
+      navigate('/app', { replace: true })
+    else
+      setLoginError(true)
     // const response = await axios.post('/resident/auth/login-with-resident',{email:data.email, password:data.senha});
     // console.log(response);
     // if(response.status === 200 && response.data?.data?.token){
     //   store.update(e=>{
     //     e.user = response.data?.data?.user;
     //     e.user.token = response.data?.data?.token;
-        
+
     //   })
-      navigate('/app',{replace:true})
+
     // }
-    
+
     // else{
     //   setLoginError(true)
     //   return;
     // }
-    
+
   }
 
   useEffect(() => {
-    if (loginError === true) {      
+    if (loginError === true) {
       setTimeout(() => {
         setLoginError(false)
         const alertList = document.querySelectorAll('.alert')
         alertList.forEach(function (alert) {
           new window.bootstrap.Alert(alert).close()
-        })        
+        })
       }, 5000)
     }
   }, [loginError])
 
   function handleScrollFocus() {
     setTimeout(() => {
-     window.scroll(0, 400)
+      window.scroll(0, 400)
     }, 150)
   }
 
